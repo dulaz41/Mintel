@@ -281,19 +281,7 @@ const Form = () => {
                     >
                       Deploy
                     </li>
-                    <li>
-                      <button
-                        className={`${
-                          currentStep === 5
-                            ? " active:bg-slate-100 bg-slate-100 text-slate-700 font-bold border rounded-md active:border"
-                            : "text-slate-400"
-                        } cursor-pointer py-3 px-10 -m-2 ml-4 p-2 flex justify-center font-medium text-xl  text-slate-100`}
-                        onClick={() => setCurrentStep(5)}
-                        disabled
-                      >
-                        Testnet
-                      </button>
-                    </li>
+                 
                     <li
                       className={`${
                         currentStep === 6

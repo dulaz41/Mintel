@@ -279,8 +279,8 @@ export function Step3({ formik }) {
             Content File Extension
           </label>
           <p className="text-sm text-slate-400 my-2">
-            Upload the image for your project content. Only accept .png,
-            .jpeg extensions
+            Upload the image for your project content. Only accept .png, .jpeg
+            extensions
           </p>
           <input
             className="shadow  appearance-none border rounded w-full py-2 px-3 text-slate-600 leading-tight focus:outline-none focus:shadow-outline"
@@ -293,8 +293,10 @@ export function Step3({ formik }) {
             onChange={(event) => {
               formik.setFieldValue("image", event.target.files[0]);
             }}
-            />
-            {formik.errors.image ? <div className="text-slate-300 mt-4">{formik.errors.image}</div> : null}
+          />
+          {formik.errors.image ? (
+            <div className="text-slate-300 mt-4">{formik.errors.image}</div>
+          ) : null}
         </div>
       </div>
     </>
@@ -364,7 +366,7 @@ export function Step4({ formik }) {
         Deploy Contract
       </h1>
 
-      <div className="mb-4 mt-9 ">
+      {/* <div className="mb-4 mt-9 ">
         <h3 className="block text-slate-200 text-xl font-bold mb-2">
           Generate contract
         </h3>
@@ -382,7 +384,7 @@ export function Step4({ formik }) {
         >
           Generate $NFT Contract
         </button>
-      </div>
+      </div> */}
       <div className="mb-4 mt-11 ">
         <h3 className="block text-slate-200 text-xl font-bold mb-2">Testnet</h3>
         <p className="text-sm text-slate-400 my-2">
@@ -453,21 +455,21 @@ export function Step5({ setCurrentStep, nftAddress, formik }) {
       <div className="grid grid-cols-1 gap-y-4 lg:grid-cols-2 gap-4">
         <div className="mb-4 mt-11  ">
           <p className="text-sm text-slate-400 my-2 text-center">
-            Your contract on Fantom Scan
+            Your contract on Areon Explorer
           </p>
           <div className="text-center flex items-center justify-center">
             <Link
-              href={`https://testnet.ftmscan.com/address/${nftAddress}`}
+              href={`https://areonscan.com/accounts/${nftAddress}`}
               passHref
               legacyBehavior
             >
               <a
                 target="_blank"
-                href={`https://testnet.ftmscan.com/address/${nftAddress}`}
+                href={`https://areonscan.com/accounts/${nftAddress}`}
                 className="shadow-md active:bg-white active:text-gray-800 hover:bg-slate-200 hover:text-slate-400 appearance-none border w-96 ml-9 mt-4 rounded py-3 px-3 font-semibold text-slate-200 leading-tight  hover:shadow-outline active:shadow-lg"
                 disabled={formik.isSubmitting}
               >
-                Fantom Scan
+                Areon Explorer
               </a>
             </Link>
           </div>
@@ -516,7 +518,7 @@ export function Step6({ metadata, token, name, nftAddress, formik }) {
             </h3>
             <a
               target="_blank"
-              href={`https://testnet.ftmscan.com/address/${nftAddress}`}
+              href={`https://areonscan.com/accounts/${nftAddress}`}
               className="text-sm text-slate-50 my-2 mx-3 text-left hover:underline hover:text-blue-600 "
             >
               {nftAddress}
