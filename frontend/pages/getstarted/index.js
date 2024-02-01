@@ -1,10 +1,10 @@
-import Image from 'next/image';
-import Nftcol from './images/NFTcollection.png';
-import logo from './images/mintel.png';
-import btnlogo from './images/mantle.png';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { providers } from 'ethers';
+import Image from "next/image";
+import Nftcol from "./images/NFTcollection.png";
+import darklogo from "./images/darkmintel.png";
+import btnlogo from "./images/mantle.png";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { providers } from "ethers";
 
 export default function started() {
   const [isConnected, setIsConnected] = useState(false);
@@ -13,9 +13,9 @@ export default function started() {
   const handleClick = async () => {
     try {
       await window.ethereum.request({
-        method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x1ce' }],
-      })
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: "0x1ce" }],
+      });
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
         params: [
@@ -35,34 +35,33 @@ export default function started() {
       setIsConnected(true);
       const account = await accounts[0];
       setAccount(account);
-   
+
       // console.log(account);
     } catch (switchError) {
       if (switchError.code === 4902) {
         try {
-            await provider.request({
-                method: 'wallet_addEthereumChain',
-                params: [
-                    {
-                        chainId: '0x1ce',
-                        chainName: 'Areon Network Testnet',
-                        nativeCurrency: {
-                            name: 'Areon',
-                            symbol: 'TAREA',
-                            decimals: 18,
-                        },
-                        rpcUrls: ['https://testnet-rpc.areon.network'],
-                    },
-                ],
-            });
+          await provider.request({
+            method: "wallet_addEthereumChain",
+            params: [
+              {
+                chainId: "0x1ce",
+                chainName: "Areon Network Testnet",
+                nativeCurrency: {
+                  name: "Areon",
+                  symbol: "TAREA",
+                  decimals: 18,
+                },
+                rpcUrls: ["https://testnet-rpc.areon.network"],
+              },
+            ],
+          });
         } catch (addError) {
-            // handle "add" error
-            console.log(addError);
+          // handle "add" error
+          console.log(addError);
         }
       }
     }
   };
-
 
   const handleDisconnect = async () => {
     if (typeof window.ethereum !== "undefined") {
@@ -81,7 +80,7 @@ export default function started() {
         <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Mintel</span>
-            <Image className="h-20 w-20" src={logo} alt="logo" />
+            <Image className="h-32 w-32" src={darklogo} alt="logo" />
           </a>
         </div>
 
@@ -96,7 +95,9 @@ export default function started() {
               alt="Mintel"
             />
             <span className="ml-2">
-              {isConnected ? `${account.slice(0, 8)}...` : "Connect to Areon Network"}
+              {isConnected
+                ? `${account.slice(0, 8)}...`
+                : "Connect to Areon Network"}
             </span>
           </button>
         </div>
