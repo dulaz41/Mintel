@@ -9,7 +9,9 @@ import {
 async function main() {
   const accounts = await ethers.getSigners();
   const deployer = accounts[0];
-  const mintelFactory = new Mintel__factory(deployer);
+  const mintelFactory: Mintel__factory = (await hre.ethers.getContractFactory(
+    "Mintel"
+  )) as Mintel__factory;
 
   const initBaseURI = "https://";
   const initNotRevealedUri = "https://";
@@ -19,7 +21,7 @@ async function main() {
   const creators = [deployer.address]; // Set the creators' addresses
   const royaltyPercentages = [10]; // Set the royalty percentages
 
-  const mintel = await mintelFactory.deploy(
+  const mintel: Mintel = await mintelFactory.deploy(
     "Name",
     "Symbol",
     initBaseURI,
@@ -32,10 +34,15 @@ async function main() {
   );
   await mintel.deployed();
   console.log(`Mintel contract was deployed at address ${mintel.address}`);
-  log("");
+  console.log(
+    "-------------------------------------------------------------------"
+  );
 
   // Deploy MintelExtender contract
-  const mintelExtenderFactory = new MintelExtender__factory(deployer);
+  const mintelExtenderFactory: MintelExtender__factory =
+    (await hre.ethers.getContractFactory(
+      "Mintel_extender"
+    )) as MintelExtender__factory;
   const mintelExtender: MintelExtender = await mintelExtenderFactory.deploy();
   await mintelExtender.deployed();
   console.log(

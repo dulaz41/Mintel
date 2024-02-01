@@ -10,16 +10,13 @@ import "solidity-coverage";
 import "hardhat-deploy";
 import { HardhatUserConfig } from "hardhat/config";
 
-const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || "";
+//const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || "";
 const SEPOLIA_RPC_URL =
   process.env.SEPOLIA_RPC_URL ||
   "https://eth-sepolia.g.alchemy.com/v2/YOUR-API-KEY";
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "privateKey";
-const POLYGON_URL = process.env.POLYGON_URL;
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "";
-const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY;
 const AREON_RPC_URL = process.env.AREON_RPC_URL;
-const SCROLL_SEPOLIA_RPC_URL = process.env.SCROLL_SEPOLIA_RPC_URL;
 
 const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
@@ -36,16 +33,6 @@ const config: HardhatUserConfig = {
       url: SEPOLIA_RPC_URL,
       accounts: [PRIVATE_KEY],
       chainId: 11155111,
-    },
-    mumbai: {
-      url: POLYGON_URL,
-      accounts: [PRIVATE_KEY],
-      chainId: 80001,
-    },
-    scrollSepolia: {
-      url: SCROLL_SEPOLIA_RPC_URL !== undefined ? SCROLL_SEPOLIA_RPC_URL : "",
-      accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
-      chainId: 534351,
     },
     areon_testnet: {
       url: AREON_RPC_URL,
@@ -64,7 +51,6 @@ const config: HardhatUserConfig = {
   },
   etherscan: {
     apiKey: {
-      polygonMumbai: POLYGONSCAN_API_KEY,
       sepolia: ETHERSCAN_API_KEY,
     },
   },
