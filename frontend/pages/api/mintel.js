@@ -10,7 +10,7 @@ const abi = [
   "function noOfProjects() public view returns(uint)",
 ];
 
-const contractAddr = "0xB1be3AC75e6c4723d5F56A3BaAdd22E9473Fe08d";
+const contractAddr = "0x760Df1198d861832314965D84A3e3ACddCB96144";
 
 const getContract = async () => {
   if (window.ethereum) {
@@ -25,6 +25,7 @@ const getContract = async () => {
 
 export async function viewProject() {
   const mintelContract = await getContract();
+  console.log(mintelContract);
   var projects = await mintelContract.viewProjects();
   const structuredProjects = projects.map((project) => ({
     owner: project.owner,
@@ -40,13 +41,14 @@ export async function viewProject() {
 
 export async function addProject(name, symbol, price, projectAddr, uri) {
   const mintelContract = await getContract();
+  console.log(mintelContract);
   var tx = await mintelContract.addProject(
     name,
     symbol,
     price,
     projectAddr,
     uri,
-    { value: 10000000000000000000n }
+    { value: 10000000000000000n }
   );
   await tx.wait();
 }

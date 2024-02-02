@@ -9,6 +9,7 @@ const project = () => {
 
   const fetchProject = async () => {
     const project = await viewProject();
+    console.log(project);
     setProjects(project);
   };
 
@@ -51,7 +52,7 @@ const project = () => {
                 className="w-full sm:w-1/2 md:w-1/3 lg:w-1/5 mx-4  px-2 mb-4"
               >
                 <div
-                  className="w-64 max-h-[368px] bg-white rounded-lg border-none shadow-sm overflow-hidden"
+                  className="w-64 max-h-[368px] bg-black rounded-lg border-none shadow-sm overflow-hidden"
                   key={i}
                 >
                   <img
@@ -65,7 +66,7 @@ const project = () => {
                     </div>
                     <div className="text-xs font-normal">
                       <a
-                        href={`https://explorer.testnet.mantle.xyz/address/${project.nftAddress}`}
+                        href={`https://areonscan.com/accounts/${project.nftAddress}`}
                         target="_blank"
                         className="hover:underline transition duration-100 ease-out"
                       >

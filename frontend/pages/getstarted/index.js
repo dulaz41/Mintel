@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Nftcol from "./images/NFTcollection.png";
 import darklogo from "./images/darkmintel.png";
-import btnlogo from "./images/mantle.png";
+import btnlogo from "./images/areon.png";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { providers } from "ethers";
