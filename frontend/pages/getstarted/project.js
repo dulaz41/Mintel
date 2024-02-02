@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const project = () => {
   const [projects, setProjects] = useState([]);
-
+  // const [minted, setMinted] = useState(false);
 
   const fetchProject = async () => {
     const project = await viewProject();
@@ -16,6 +16,15 @@ const project = () => {
   useEffect(() => {
     fetchProject();
   }, []);
+
+  const handleMintNFT = async (nftAddress, index) => {
+    await mintNFT(nftAddress);
+    setProjects((prevProjects) =>
+      prevProjects.map((project, i) =>
+        i === index ? { ...project, minted: true } : project
+      )
+    );
+  };
 
   return (
     <div className=" bg-[#1e2c2e]">
@@ -34,7 +43,7 @@ const project = () => {
           Check your deployed projects here.
         </p>
 
-        <div className="  h-full  bg-[#1e2c2e]   ">
+        <div className="  h-screen  bg-[#1e2c2e]   ">
           <div className=" mb-4 mt-16 items-center lg:pl-[82px]  px-2  ">
             <h3 className="text-slate-200 text-3xl font-bold mb-2">Projects</h3>
             <hr className="w-80 border-2 border-slate-200" />
@@ -52,19 +61,19 @@ const project = () => {
                 className="w-full sm:w-1/2 md:w-1/3 lg:w-1/5 mx-4  px-2 mb-4"
               >
                 <div
-                  className="w-64 max-h-[368px] bg-black rounded-lg border-none shadow-sm overflow-hidden"
+                  className="w-64 max-h-[368px] bg-black/60 rounded-lg border-none shadow-sm overflow-hidden"
                   key={i}
                 >
                   <img
                     className="w-full h-48 object-cover"
-                    src={`https://ipfs.io/ipfs/${project.uri.slice(6)}`}
+                    src={`https://ipfs.io/ipfs/${project.uri.slice(7)}`}
                     alt={project.name}
                   />
                   <div className="p-4">
-                    <div className="text-xl font-medium">
+                    <div className="text-xl text-white font-medium">
                       {project.name ? project.name : "Not Available"}
                     </div>
-                    <div className="text-xs font-normal">
+                    <div className="text-xs text-white/50 font-normal">
                       <a
                         href={`https://areonscan.com/accounts/${project.nftAddress}`}
                         target="_blank"
@@ -82,12 +91,19 @@ const project = () => {
                       </div>
                     </div>
                     <div className="text-center  justify-start">
-                      <button
-                        onClick={() => mintNFT(project.nftAddress)}
-                        className="text-md bg-green-400 text-black  p-5 my-2 shadow-md appearance-none border w-32 mt-4 rounded-md py-3 px-3 font-semibold active:bg-black active:text-white hover:bg-green-300 transition duration-200 ease-in  leading-tight  hover:shadow-outline active:shadow-lg"
-                      >
-                        Mint
-                      </button>
+                      {project.minted && (
+                        <div className="text-green-500 font-semibold p-5 my-2 mt-4 mb-2">
+                          NFT Minted Successfully!
+                        </div>
+                      )}
+                      {!project.minted && (
+                        <button
+                          onClick={() => handleMintNFT(project.nftAddress, i)}
+                          className="text-md bg-green-400 text-black  p-5 my-2 shadow-md appearance-none border w-32 mt-4 rounded-md py-3 px-3 font-semibold active:bg-black active:text-white hover:bg-green-300 transition duration-200 ease-in  leading-tight  hover:shadow-outline active:shadow-lg"
+                        >
+                          Mint
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>

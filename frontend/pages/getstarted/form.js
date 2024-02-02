@@ -13,9 +13,9 @@ import { useFormik } from "formik";
 import { NFTStorage, File } from "nft.storage";
 import { useRouter } from "next/router";
 import * as yup from "yup";
-import { ContractFactory, ethers } from "ethers";
+import { ethers } from "ethers";
 import nft from "../../utils/Mintel.json";
-import { addProject} from "../api/mintel";
+import { addProject } from "../api/mintel";
 
 const features = {
   categories: [
@@ -119,9 +119,8 @@ const Form = () => {
           token: values.token,
           image: imageFile,
         });
-        console.log(metadata.url)
+        console.log(metadata.url);
 
-        
         if (window.ethereum) {
           try {
             // deploying
@@ -138,7 +137,7 @@ const Form = () => {
               metadata.url,
               metadata.url
             );
-
+            console.log(metadata.data)
             await mintel.deployed();
             setNftAddress(mintel.address);
             await addProjects(
@@ -146,7 +145,7 @@ const Form = () => {
               metadata.data.token,
               1,
               mintel.address,
-              metadata.data.image.href
+              metadata.data.image.href,
             );
           } catch (err) {
             console.log(err);
