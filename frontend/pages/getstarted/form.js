@@ -127,25 +127,25 @@ const Form = () => {
             // deploying
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
-            const minHubContract = new ethers.ContractFactory(
+            const mintelContract = new ethers.ContractFactory(
               nft.abi,
               nft.object,
               signer
             );
-            const minHub = await minHubContract.deploy(
+            const mintel = await mintelContract.deploy(
               name,
               token,
               metadata.url,
               metadata.url
             );
 
-            await minHub.deployed();
-            setNftAddress(minHub.address);
+            await mintel.deployed();
+            setNftAddress(mintel.address);
             await addProjects(
               metadata.data.name,
               metadata.data.token,
               1,
-              minHub.address,
+              mintel.address,
               metadata.data.image.href
             );
           } catch (err) {
