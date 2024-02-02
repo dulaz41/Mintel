@@ -1,110 +1,58 @@
-# MinHub
+# Mintel Smart Contract
 
-<br>
+Mintel is an ERC721-compliant smart contract deployed on the AREON blockchain. It provides a streamlined and user-friendly platform for creators to mint and manage NFTs with customizable options. This README outlines the features, usage, and deployment details of the Mintel smart contract.
 
-## 🤔 What is the `MinHub`?
+## Table of Contents
 
-MinHub is a one-stop service for all NFT creators. MinHub allows you to generate and deploy a ERC721 contract on the Scroll blockchain with any information and features. After the deployment, you can use mint button for integration, with which anyone can mint your NFT collection.
+- [Overview](#overview)
+- [Features](#features)
+- [Usage](#usage)
+- [Deployment](#deployment)
+- [Configuration](#configuration)
+- [Owner Functions](#owner-functions)
+- [Withdrawal](#withdrawal)
 
-We saw how rapidly the NFT community on the Scroll blockchain is developing and decided to release MinHub on Scroll to make it easier for creators to go from the idea of a collection to its implementation.
+## Overview
 
-<br>
+Mintel is an ERC721Enumerable contract that extends the OpenZeppelin contracts ERC721Enumerable and Ownable. It introduces features to facilitate the creation, minting, and management of NFTs on the AREON blockchain. Key functionalities include minting NFTs, setting limits, revealing NFTs, and adjusting pricing and URIs.
 
-## 🔴 Problem
+## Features
 
-Traditionally, creating an NFT involves writing code or using complex software to generate a unique token that represents a digital asset. This can be a barrier to entry for many people who are interested in participating in the NFT market but lack the technical skills or resources to create NFTs themselves.
+1. **Flexible Minting:** Users can mint NFTs with a specified quantity, subject to limits configured by the contract owner.
+2. **Revealing NFTs:** Owners have the option to reveal NFTs to the public, unlocking the metadata URI for all minted tokens.
+3. **Customizable URI:** The base URI, extension, and not revealed URI are customizable, allowing creators to define the metadata location for their NFTs.
+4. **Configurable Limits:** Maximum supply, minting amount per session, and NFTs per address limits can be configured to control the contract's behavior.
+5. **Royalty Distribution:** The contract supports royalty distribution to multiple creators based on configured percentages.
+6. **Secure Ownership:** Only the contract owner can execute certain critical functions, ensuring control over essential aspects.
 
-<br>
+## Usage
 
-## 🟢 Solution
+### Minting
 
-MinHub would remove this barrier by providing an easy-to-use interface that allows users to create NFTs without any coding knowledge. This would standadize the NFT market and open it up to a wider range of creators and collectors.
+To mint NFTs, users can call the `mint` function by providing the desired quantity and corresponding payment in Ether. Ensure the minting conditions, such as maximum supply and per-session limits, are satisfied.
 
-In addition to simplifying the creation of NFTs, MinHub would also improve the overall user experience of the NFT ecosystem. By making it easier for people to create and trade NFTs, more people may be incentivized to participate in the market. This could lead to increased liquidity and more diverse offerings, which could attract even more participants.
+### Revealing NFTs
 
-<br>
-<br>
+Owners can reveal NFTs to the public by calling the `reveal` function, making the metadata URI accessible for all minted tokens.
 
-## 🧑‍💻 Getting started
+### Token Information
 
-<hr>
+Token information, including the current base URI, not revealed URI, and extension, can be retrieved using the corresponding getter functions.
 
-## 🛠️ Prerequisites
+## Deployment
 
-<li><a href="https://typescriptlang.org">Typescript</a></li>
-<li><a href="https://reactjs.org">React</a></li>
-<li><a href="prerequisites">Nextjs</a></li>
-<br>
+Deploy the Mintel smart contract on the AREON blockchain by providing the required constructor parameters: name, symbol, initial base URI, initial not revealed URI, maximum supply, maximum mint amount per session, and NFTs per address limit. Additionally, provide arrays of creators and their corresponding royalty percentages.
 
-## ⚙️ System Dependencies
+## Configuration
 
-<li><a href="https://nodejs.org">Node</a></li>
-<li><a href="https://yarnpkg.com">Yarn</a></li>
-<br>
+Owners can adjust various contract parameters such as minting cost (`setCost`), maximum mint amount per session (`setmaxMintAmount`), base URI (`setBaseURI`), base extension (`setBaseExtension`), and not revealed URI (`setNotRevealedURI`). Limits like NFTs per address can also be modified (`setNftPerAddressLimit`).
 
-## 💻 Installation
+## Owner Functions
 
-Start the Next.js development server on the default port 3000 with:
+The contract includes functions that can only be executed by the owner, ensuring control over critical aspects of the contract. These functions include revealing NFTs, adjusting limits, and updating configuration parameters.
 
-```
-cd frontend
-```
+## Withdrawal
 
-```
-npm install
-```
+The owner can withdraw the contract's Ether balance using the `withdraw` function, transferring funds to the owner's address.
 
-```
-npm run dev
-```
-
-or
-
-(Recommended) Start the Next.js development server on the default port 3000 using Yarn:
-
-```
-cd frontend
-```
-
-```
-yarn install
-```
-
-```
-yarn dev
-```
-
-> Alternatively, run `npm run dev -p 8080` or any port other than `8080` to start the server in a different port.
-
-Once the server is running, you should see output that looks like this:
-
-```
-
-
-$ next dev
-ready - started server on 0.0.0.0:3000, url: http://localhost:3000
-info - Using webpack 5. Reason: Enabled by default https://nextjs.org/docs/messages/webpack5
-event - compiled successfully
-
-```
-
-<br>
-
-<br>
-
-## 🙍‍♂️ Team Members
-
-<li>Abdulazeez Salihu (Backend Developer)</li>
-<li>Alade Toheeb (Backend Developer)</li>
-<br>
-
-## 🔜 Upcoming Features
-
-<li>Nft Marketplace</li>
-<li>NFT Teleport (NFT Bridge)</li>
-<br>
- 
-## 🔗 Contract Address
-
-<li><a href=https://sepolia.scrollscan.dev/address/0x1f8854185f46b643544f0dca3355cc30212ec48e>Scroll Scan</a></li>
-<br>
+---
